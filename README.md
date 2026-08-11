@@ -1,1 +1,1 @@
-# rutchiis-compshop-guide
+# compshops-near-tup
