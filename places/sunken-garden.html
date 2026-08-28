@@ -4,20 +4,23 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Sunken Garden</title>
-  
-  
+  <link rel="stylesheet" href="../stylesheet.css">
 </head>
-<body style="text-align: center;">
+<body>
 
   <header>
-    <h1>Sunken Garden</h1>
-    <nav>
-      <ul style="list-style-type: none; padding: 0;">
-        <li><a href="../index.html">Home</a></li>
-        <li><a href="../about.html">About</a></li>
-        <li><a href="../contact.html">Contact</a></li>
-      </ul>
-    </nav>
+    <div class="header-content">
+      <div class="site-title">
+        <h1>Sunken Garden</h1>
+      </div>
+      <nav>
+        <ul style="list-style-type: none; padding: 0;">
+          <li><a href="../index.html">Home</a></li>
+          <li><a href="../about.html">About</a></li>
+          <li><a href="../contact.html">Contact</a></li>
+        </ul>
+      </nav>
+    </div>
   </header>
 
   <main>
@@ -28,7 +31,8 @@
     <p>Discover the magic of our Sunken Garden! This enchanting garden features a stunning design, perfect for adding a touch of whimsy to your outdoor space. Made with high-quality materials, it's both durable and beautiful.</p>
 
     <h2>Product Specifications</h2>
-    <table border="1" style="margin: 0 auto; border-collapse: collapse; text-align: left; cellpadding: 8;">
+    
+    <table>
       <thead>
         <tr>
           <th>Category</th>
@@ -50,6 +54,56 @@
         </tr>
       </tbody>
     </table>
+
+    <section id="suggest-place">
+      <h2>Suggest a Place to Add</h2>
+
+      <form action="#" method="post">
+        <p>
+          <label for="place-name">Place Name (required):</label><br>
+          <input type="text" id="place-name" name="place_name" required placeholder="e.g., Starry Cafe">
+        </p>
+
+        <fieldset>
+          <legend>Category</legend>
+
+          <label>
+            <input type="radio" id="food" name="category" value="food" checked> Food &amp; Drinks
+          </label><br>
+
+          <label>
+            <input type="radio" id="study" name="category" value="study"> Study Spot
+          </label><br>
+
+          <label>
+            <input type="radio" id="outdoors" name="category" value="outdoors"> Outdoors &amp; Parks
+          </label>
+        </fieldset>
+
+        <fieldset>
+          <legend>What's Good About It?</legend>
+
+          <label>
+            <input type="checkbox" id="affordable" name="highlights" value="affordable"> Affordable
+          </label><br>
+
+          <label>
+            <input type="checkbox" id="wifi" name="highlights" value="good_wifi"> Good Wi-Fi
+          </label><br>
+
+          <label>
+            <input type="checkbox" id="quiet" name="highlights" value="quiet"> Quiet Environment
+          </label>
+        </fieldset>
+
+        <p>
+          <label for="submitter-email">Your Email Address (required):</label><br>
+          <input type="email" id="submitter-email" name="submitter_email" required placeholder="name@example.com">
+        </p>
+
+        <button type="submit">Submit Recommendation</button>
+      </form>
+    </section>
   </main>
 
   <footer>
