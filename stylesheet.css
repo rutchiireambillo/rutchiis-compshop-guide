@@ -1,3 +1,17 @@
+/* ==========================================================================
+   1. VARIABLES
+   ========================================================================== */
+:root {
+  --brand-color: #ffffff;
+  --dark-ink: rgb(20, 20, 20);
+  --muted-grey: #555555;
+  --light-bg: rgb(0, 0, 0);
+  --card-bg: rgb(24, 24, 24);
+  --text-muted: #cccccc;
+}
+/* ==========================================================================
+   2. BASE STYLES
+   ========================================================================== */
 * {
   box-sizing: border-box;
 }
@@ -7,224 +21,182 @@ html {
 }
 
 body {
-  min-height: 100vh;
   margin: 0;
+  min-height: 100vh;
   display: flex;
   flex-direction: column;
-  background-color: rgb(0, 0, 0);
-  color: white;
+  background-color: var(--light-bg);
+  color: var(--brand-color);
   font-family: Arial, sans-serif;
   line-height: 1.6;
+  text-align: center;
 }
 
+h1,
+h2,
+h3 {
+  color: var(--brand-color);
+}
+
+h1 {
+  margin-top: 0;
+  font-size: 2.4rem;
+}
+
+/* ==========================================================================
+   3. LAYOUT REGIONS
+   ========================================================================== */
 header {
+  background-color: var(--dark-ink);
   padding: 20px 5%;
-  background-color: rgb(20, 20, 20);
-  border-bottom: 2px solid white;
+  border-bottom: 2px solid var(--brand-color);
 }
 
 .header-content {
-  max-width: 1200px;
-  margin: 0 auto;
   display: flex;
   justify-content: space-between;
   align-items: center;
   gap: 30px;
+  max-width: 1200px;
+  margin: 0 auto;
 }
 
-.site-title h1 {
+header h1 {
   margin: 0;
-  color: white;
-  font-size: 1.7rem;
+  color: var(--brand-color);
+  font-size: 1.5rem;
+  white-space: nowrap;
 }
 
-.site-title p {
-  margin: 4px 0 0;
-  color: #cccccc;
-  font-size: 0.95rem;
-}
-
+/* Style the Nav Bar */
 nav ul {
-  display: flex;
-  gap: 30px;
   margin: 0;
   padding: 0;
   list-style: none;
 }
 
+nav li {
+  display: inline-block;
+  margin: 0 15px;
+}
+
 nav a {
-  color: white;
+  color: var(--brand-color);
   text-decoration: none;
   font-weight: bold;
+  font-size: 1.1rem;
 }
 
 nav a:hover {
-  color: #aaaaaa;
+  color: #ffffff;
   text-decoration: underline;
 }
 
-/* Centralized Main Content */
 main {
-  width: min(1200px, 92%);
+  width: min(1100px, 90%);
   margin: 0 auto;
   flex: 1;
   padding: 50px 0;
-  text-align: center;
 }
 
-main img {
-  display: block;
-  margin: 0 auto 20px;
-}
-
-/* Table Centering & Layout */
 table {
-  width: 100%;
-  max-width: 600px;
-  margin: 20px auto 40px;
+  margin: 0 auto 30px auto; /* Centers the block-level table element */
   border-collapse: collapse;
-  background-color: rgb(24, 24, 24);
-  border: 1px solid #555555;
-  border-radius: 8px;
-  overflow: hidden;
 }
 
 th, td {
-  padding: 12px 16px;
+  text-align: center; /* Centers text inside each cell */
+  padding: 10px 15px; /* Adds spacing so text isn't cramped */
+}
+
+footer {
+  padding: 20px;
   text-align: center;
-  border-bottom: 1px solid #444444;
+  background-color: var(--dark-ink);
+  border-top: 2px solid var(--brand-color);
 }
 
-th {
-  background-color: rgb(40, 40, 40);
-  color: #ffffff;
+footer p {
+  margin: 0;
 }
 
-td {
-  color: #cccccc;
-}
-
-/* Form Centering & Layout */
-#suggest-place {
-  max-width: 600px;
-  margin: 40px auto 0;
-  padding: 30px;
-  background-color: rgb(24, 24, 24);
-  border: 1px solid #555555;
-  border-radius: 10px;
+/* ==========================================================================
+   4. COMPONENTS
+   ========================================================================== */
+/* Shop Intro */
+.shop-introduction {
+  max-width: 850px;
+  margin: 0 auto 45px;
   text-align: center;
 }
 
-#suggest-place h2 {
-  margin-top: 0;
+.shop-introduction p {
+  margin: 0 auto;
+  font-size: 1.05rem;
 }
 
-input[type="text"],
-input[type="email"] {
-  width: 100%;
-  max-width: 350px;
-  padding: 8px 12px;
-  margin-top: 5px;
-  background-color: rgb(10, 10, 10);
-  border: 1px solid #555555;
-  border-radius: 4px;
-  color: #ffffff;
-  font-size: 1rem;
-}
-
-fieldset {
-  border: 1px solid #555555;
-  border-radius: 8px;
-  padding: 15px 20px;
-  margin: 20px auto;
-  max-width: 400px;
-  text-align: left;
-}
-
-legend {
-  padding: 0 8px;
-  font-weight: bold;
-  color: #ffffff;
-}
-
-button[type="submit"] {
-  background-color: white;
-  color: black;
-  border: none;
-  padding: 12px 24px;
-  font-size: 1rem;
-  font-weight: bold;
-  border-radius: 6px;
-  cursor: pointer;
-  transition: background-color 0.2s ease;
-}
-
-button[type="submit"]:hover {
-  background-color: #cccccc;
-}
-
-/* Grid Sections */
-.compshop-list,
-.recommended-list {
+/* Product Cards */
+.products {
   display: grid;
-  grid-template-columns: repeat(3, minmax(0, 1fr));
+  grid-template-columns: repeat(3, 1fr);
   gap: 25px;
-  margin-bottom: 60px;
-}
-
-.compshop-card,
-.recommended-card,
-.about-section,
-.contact-section {
-  background-color: rgb(24, 24, 24);
-  border: 1px solid #555555;
-  border-radius: 10px;
+  align-items: stretch;
+  
+  
 }
 
 article {
   display: flex;
   flex-direction: column;
   align-items: center;
-  padding: 25px;
-  text-align: center;
+  border: 1px solid var(--muted-grey);
+  border-radius: 8px;
+  padding: 15px;
+  margin: 10px;
 }
 
-article h2, article h3 {
+article h3 {
   margin-top: 0;
+  font-size: 1.25rem;
+}
+
+article p {
+  margin: 8px 0;
 }
 
 article img {
   display: block;
   width: 200px;
   height: 200px;
-  margin-top: auto;
   object-fit: cover;
+  margin: 20px auto 0;
   border-radius: 8px;
 }
 
-.recommended-section {
-  text-align: center;
-}
-
-.recommended-section > h1 {
-  margin-bottom: 10px;
-}
-
-.recommended-section > h2 {
-  margin-top: 0;
-  margin-bottom: 30px;
-}
-
+/* Secondary Page Sections */
 .about-section,
 .contact-section {
   max-width: 700px;
   margin: 0 auto;
-  padding: 40px;
+  padding: 35px;
   text-align: center;
+  background-color: #555555;
+  border: 1px solid var(--brand-color);
+  border-radius: 12px;
 }
 
 .about-section h2 {
   margin-top: 0;
+  font-size: 2rem;
+}
+
+.about-section img {
+  display: block;
+  width: 200px;
+  height: 200px;
+  object-fit: cover;
+  margin: 25px auto 0;
+  border-radius: 50%;
 }
 
 .contact-section ul {
@@ -238,56 +210,40 @@ article img {
 }
 
 .contact-section a {
-  color: white;
+  color: var(--brand-color);
 }
 
 .contact-section a:hover {
-  color: #aaaaaa;
+  color: #ffffff;
 }
 
-footer {
-  padding: 20px;
-  background-color: rgb(20, 20, 20);
-  border-top: 2px solid white;
-  text-align: center;
-}
-
-footer p {
-  margin: 0;
-}
-
-@media (max-width: 900px) {
-  .compshop-list,
-  .recommended-list {
+/* ==========================================================================
+   5. MEDIA QUERIES
+  ========================================================================== */
+@media (max-width: 850px) {
+  .products {
     grid-template-columns: 1fr;
   }
 
-  .compshop-card,
-  .recommended-card {
-    max-width: 700px;
+  .product-card {
+    max-width: 500px;
     margin: 0 auto;
   }
 }
 
-@media (max-width: 650px) {
-  .header-content {
-    flex-direction: column;
-    text-align: center;
+@media (max-width: 500px) {
+  nav li {
+    display: block;
+    margin: 10px 0;
   }
 
-  nav ul {
-    flex-direction: column;
-    gap: 12px;
+  h1 {
+    font-size: 1.8rem;
   }
 
   main {
     width: 92%;
     padding: 35px 0;
-  }
-
-  .compshop-card img {
-    height: auto;
-    aspect-ratio: 3 / 2;
   }
 
   .about-section,
