@@ -2,13 +2,15 @@
    1. VARIABLES
    ========================================================================== */
 :root {
-  --brand-color: #ffffff;
+  --brand: #ffffff;
   --dark-ink: rgb(20, 20, 20);
   --muted-grey: #555555;
   --light-bg: rgb(0, 0, 0);
   --card-bg: rgb(24, 24, 24);
+  --text-light: #ffffff;
   --text-muted: #cccccc;
 }
+
 /* ==========================================================================
    2. BASE STYLES
    ========================================================================== */
@@ -21,54 +23,55 @@ html {
 }
 
 body {
-  margin: 0;
   min-height: 100vh;
+  margin: 0;
   display: flex;
   flex-direction: column;
   background-color: var(--light-bg);
-  color: var(--brand-color);
+  color: var(--text-light);
   font-family: Arial, sans-serif;
   line-height: 1.6;
-  text-align: center;
 }
 
-h1,
-h2,
-h3 {
-  color: var(--brand-color);
-}
-
-h1 {
-  margin-top: 0;
-  font-size: 2.4rem;
+/* Visible Keyboard Focus Ring (Lesson 4.6 Requirement) */
+input:focus,
+textarea:focus,
+button:focus,
+a:focus {
+  outline: 3px solid var(--brand);
+  outline-offset: 2px;
 }
 
 /* ==========================================================================
    3. LAYOUT REGIONS
    ========================================================================== */
 header {
-  background-color: var(--dark-ink);
   padding: 20px 5%;
-  border-bottom: 2px solid var(--brand-color);
+  background-color: var(--dark-ink);
+  border-bottom: 2px solid var(--brand);
 }
 
 .header-content {
+  max-width: 1200px;
+  margin: 0 auto;
   display: flex;
   justify-content: space-between;
   align-items: center;
   gap: 30px;
-  max-width: 1200px;
-  margin: 0 auto;
 }
 
-header h1 {
+.site-title h1 {
   margin: 0;
-  color: var(--brand-color);
-  font-size: 1.5rem;
-  white-space: nowrap;
+  color: var(--brand);
+  font-size: 1.7rem;
 }
 
-/* Style the Nav Bar */
+.site-title p {
+  margin: 4px 0 0;
+  color: var(--text-muted);
+  font-size: 0.95rem;
+}
+
 nav ul {
   margin: 0;
   padding: 0;
@@ -81,22 +84,22 @@ nav li {
 }
 
 nav a {
-  color: var(--brand-color);
+  color: var(--brand);
   text-decoration: none;
   font-weight: bold;
-  font-size: 1.1rem;
 }
 
 nav a:hover {
-  color: #ffffff;
+  color: var(--text-muted);
   text-decoration: underline;
 }
 
 main {
-  width: min(1100px, 90%);
+  width: min(1200px, 92%);
   margin: 0 auto;
   flex: 1;
   padding: 50px 0;
+  text-align: center;
 }
 
 table {
@@ -111,9 +114,9 @@ th, td {
 
 footer {
   padding: 20px;
-  text-align: center;
   background-color: var(--dark-ink);
-  border-top: 2px solid var(--brand-color);
+  border-top: 2px solid var(--brand);
+  text-align: center;
 }
 
 footer p {
@@ -123,80 +126,149 @@ footer p {
 /* ==========================================================================
    4. COMPONENTS
    ========================================================================== */
-/* Shop Intro */
-.shop-introduction {
-  max-width: 850px;
-  margin: 0 auto 45px;
-  text-align: center;
-}
 
-.shop-introduction p {
-  margin: 0 auto;
-  font-size: 1.05rem;
-}
-
-/* Product Cards */
-.products {
+/* Grid Layout for Cards */
+.compshop-list,
+.recommended-list {
   display: grid;
-  grid-template-columns: repeat(3, 1fr);
+  grid-template-columns: repeat(3, minmax(0, 1fr));
   gap: 25px;
-  align-items: stretch;
-  
-  
+  margin-bottom: 60px;
 }
 
-article {
+/* 📍 Places Cards (.place-card) */
+.place-card {
+  background-color: var(--card-bg);  /* Background color */
+  border-radius: 8px;                /* Border radius */
+  padding: 20px;                      /* At least 16px padding */
+  border-left: 6px solid var(--brand); /* Coloured left border using brand variable */
+  margin-bottom: 20px;                /* Cards don't touch each other */
   display: flex;
   flex-direction: column;
   align-items: center;
-  border: 1px solid var(--muted-grey);
-  border-radius: 8px;
-  padding: 15px;
-  margin: 10px;
+  text-align: center;
 }
 
-article h3 {
+/* Distinct Font Size & Color on Place Name */
+.place-card h2,
+.place-card h3,
+.place-card .place-name {
   margin-top: 0;
-  font-size: 1.25rem;
+  font-size: 1.4rem;                 /* Distinct font-size */
+  color: var(--brand);               /* Distinct color using brand variable */
 }
 
-article p {
-  margin: 8px 0;
+.place-card p {
+  color: var(--text-muted);           /* Text contrast reaches > 4.5:1 ratio */
+  margin: 10px 0;
+  font-size: 0.95rem;
 }
 
-article img {
+.place-card img {
   display: block;
-  width: 200px;
-  height: 200px;
+  width: 100%;
+  max-width: 280px;
+  height: 180px;
+  margin-top: auto;
   object-fit: cover;
-  margin: 20px auto 0;
-  border-radius: 8px;
+  border-radius: 6px;
 }
 
-/* Secondary Page Sections */
+.place-card a {
+  display: inline-block;
+  margin-top: 12px;
+  color: var(--brand);
+  font-weight: bold;
+  text-decoration: none;
+}
+
+.place-card a:hover {
+  text-decoration: underline;
+}
+
+/* 📝 Contact & Suggestion Form Styling */
+#suggest-place,
+.contact-section form {
+  max-width: 600px;
+  margin: 40px auto;
+  text-align: left;
+}
+
+fieldset {
+  border: 1px solid var(--muted-grey);
+  border-radius: 8px;                 /* Border radius on fieldset */
+  padding: 24px;                      /* Padding on fieldset */
+  background-color: var(--card-bg);
+}
+
+legend {
+  color: var(--brand);                /* Styled legend using brand colour */
+  font-weight: bold;
+  font-size: 1.2rem;
+  padding: 0 10px;
+}
+
+.form-group {
+  margin-bottom: 18px;
+}
+
+label {
+  display: block;
+  margin-bottom: 6px;
+  color: var(--text-light);
+  font-weight: bold;
+}
+
+input[type="text"],
+input[type="email"],
+textarea {
+  width: 100%;
+  padding: 12px;                      /* Consistent padding on inputs & textarea */
+  border: 1px solid var(--muted-grey);
+  border-radius: 4px;
+  background-color: var(--dark-ink);
+  color: var(--text-light);
+  font-family: inherit;
+  font-size: 1rem;
+}
+
+textarea {
+  resize: vertical;
+  min-height: 120px;
+}
+
+button[type="submit"],
+input[type="submit"] {
+  background-color: var(--brand);      /* Styled submit button */
+  color: var(--light-bg);
+  font-weight: bold;
+  font-size: 1rem;
+  padding: 12px 24px;                 /* Button padding */
+  border: none;                       /* No default border */
+  border-radius: 6px;
+  cursor: pointer;                    /* Cursor: pointer */
+  transition: opacity 0.2s ease;
+}
+
+button[type="submit"]:hover,
+input[type="submit"]:hover {
+  opacity: 0.85;
+}
+
+/* Secondary Pages (About/Contact) */
 .about-section,
 .contact-section {
   max-width: 700px;
   margin: 0 auto;
-  padding: 35px;
+  padding: 40px;
   text-align: center;
-  background-color: #555555;
-  border: 1px solid var(--brand-color);
-  border-radius: 12px;
+  background-color: var(--card-bg);
+  border: 2px solid var(--brand);
+  border-radius: 10px;
 }
 
 .about-section h2 {
   margin-top: 0;
-  font-size: 2rem;
-}
-
-.about-section img {
-  display: block;
-  width: 200px;
-  height: 200px;
-  object-fit: cover;
-  margin: 25px auto 0;
-  border-radius: 50%;
 }
 
 .contact-section ul {
@@ -210,44 +282,41 @@ article img {
 }
 
 .contact-section a {
-  color: var(--brand-color);
+  color: var(--brand);
 }
 
 .contact-section a:hover {
-  color: #ffffff;
+  color: var(--text-muted);
 }
 
 /* ==========================================================================
    5. MEDIA QUERIES
-  ========================================================================== */
-@media (max-width: 850px) {
-  .products {
+   ========================================================================== */
+@media (max-width: 900px) {
+  .compshop-list,
+  .recommended-list {
     grid-template-columns: 1fr;
   }
 
-  .product-card {
-    max-width: 500px;
-    margin: 0 auto;
+  .place-card {
+    max-width: 600px;
+    margin: 0 auto 20px;
   }
 }
 
-@media (max-width: 500px) {
+@media (max-width: 650px) {
+  .header-content {
+    flex-direction: column;
+    text-align: center;
+  }
+
   nav li {
     display: block;
     margin: 10px 0;
   }
 
-  h1 {
-    font-size: 1.8rem;
-  }
-
   main {
     width: 92%;
     padding: 35px 0;
-  }
-
-  .about-section,
-  .contact-section {
-    padding: 25px 15px;
   }
 }
