@@ -45,7 +45,8 @@ a:focus {
 /* ==========================================================================
    3. LAYOUT REGIONS
    ========================================================================== */
-header {
+header,
+.site-header {
   padding: 20px 5%;
   background-color: var(--dark-ink);
   border-bottom: 2px solid var(--brand);
@@ -72,15 +73,18 @@ header {
   font-size: 0.95rem;
 }
 
-nav ul {
+/* Flexbox Navigation Implementation */
+nav ul,
+.site-header nav ul {
   margin: 0;
   padding: 0;
   list-style: none;
+  display: flex;
+  gap: 20px;
 }
 
 nav li {
-  display: inline-block;
-  margin: 0 15px;
+  margin: 0;
 }
 
 nav a {
@@ -126,6 +130,16 @@ footer p {
 /* ==========================================================================
    4. COMPONENTS
    ========================================================================== */
+
+/* Hero / Banner Centering (Lesson 6.4 Technique) */
+.hero-banner,
+.site-banner {
+  min-height: 200px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+}
 
 /* Grid Layout for Cards */
 .compshop-list,
@@ -305,14 +319,8 @@ input[type="submit"]:hover {
 }
 
 @media (max-width: 650px) {
-  .header-content {
-    flex-direction: column;
-    text-align: center;
-  }
-
-  nav li {
-    display: block;
-    margin: 10px 0;
+  nav ul {
+    gap: 12px;
   }
 
   main {
