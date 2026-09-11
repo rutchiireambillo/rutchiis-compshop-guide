@@ -141,22 +141,23 @@ footer p {
   text-align: center;
 }
 
-/* Grid Layout for Cards */
+/* Responsive Flex Container for Cards */
+.place-grid,
 .compshop-list,
 .recommended-list {
-  display: grid;
-  grid-template-columns: repeat(3, minmax(0, 1fr));
-  gap: 25px;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 24px;
   margin-bottom: 60px;
 }
 
 /* 📍 Places Cards (.place-card) */
 .place-card {
+  flex: 1 1 240px;                     /* Grow to fill, shrink, base width 240px */
   background-color: var(--card-bg);  /* Background color */
   border-radius: 8px;                /* Border radius */
   padding: 20px;                      /* At least 16px padding */
   border-left: 6px solid var(--brand); /* Coloured left border using brand variable */
-  margin-bottom: 20px;                /* Cards don't touch each other */
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -306,18 +307,6 @@ input[type="submit"]:hover {
 /* ==========================================================================
    5. MEDIA QUERIES
    ========================================================================== */
-@media (max-width: 900px) {
-  .compshop-list,
-  .recommended-list {
-    grid-template-columns: 1fr;
-  }
-
-  .place-card {
-    max-width: 600px;
-    margin: 0 auto 20px;
-  }
-}
-
 @media (max-width: 650px) {
   nav ul {
     gap: 12px;
