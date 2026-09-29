@@ -12,7 +12,7 @@
 }
 
 /* ==========================================================================
-   2. BASE STYLES
+   2. BASE STYLES & CSS GRID PAGE SKELETON
    ========================================================================== */
 * {
   box-sizing: border-box;
@@ -25,26 +25,40 @@ html {
 body {
   min-height: 100vh;
   margin: 0;
-  display: flex;
-  flex-direction: column;
   background-color: var(--light-bg);
   color: var(--text-light);
   font-family: Arial, sans-serif;
   line-height: 1.6;
+
+  /* Grid Page Skeleton using Named Grid Areas */
+  display: grid;
+  grid-template-columns: 220px 1fr;
+  grid-template-areas:
+    "masthead masthead"
+    "side     main"
+    "foot     foot";
+  gap: 16px;
 }
 
-/* Visible Keyboard Focus Ring (Lesson 4.6 Requirement) */
+/* Visible Keyboard Focus Ring */
 input:focus,
 textarea:focus,
 button:focus,
+select:focus,
 a:focus {
   outline: 3px solid var(--brand);
   outline-offset: 2px;
 }
 
 /* ==========================================================================
-   3. LAYOUT REGIONS
+   3. LAYOUT REGIONS & GRID AREAS
    ========================================================================== */
+header { grid-area: masthead; }
+aside  { grid-area: side; }
+main   { grid-area: main; }
+footer { grid-area: foot; }
+
+/* Header Formatting (Uses Flexbox inside) */
 header,
 .site-header {
   padding: 20px 5%;
@@ -73,7 +87,7 @@ header,
   font-size: 0.95rem;
 }
 
-/* Flexbox Navigation Implementation */
+/* Navigation (Uses Flexbox inside) */
 nav ul,
 .site-header nav ul {
   margin: 0;
@@ -98,24 +112,42 @@ nav a:hover {
   text-decoration: underline;
 }
 
+/* Sidebar Styling */
+aside {
+  background-color: var(--card-bg);
+  padding: 20px;
+  border: 1px solid var(--muted-grey);
+  border-radius: 8px;
+  text-align: left;
+  margin-left: 16px;
+}
+
+aside h3 {
+  margin-top: 0;
+  color: var(--brand);
+  border-bottom: 1px solid var(--muted-grey);
+  padding-bottom: 6px;
+}
+
+aside ul {
+  padding-left: 20px;
+  margin: 10px 0;
+}
+
+aside li {
+  margin-bottom: 8px;
+  color: var(--text-muted);
+}
+
+/* Main Content Area */
 main {
-  width: min(1200px, 92%);
+  width: 100%;
   margin: 0 auto;
-  flex: 1;
-  padding: 50px 0;
+  padding: 20px 20px 40px 0;
   text-align: center;
 }
 
-table {
-  margin: 0 auto 30px auto; /* Centers the block-level table element */
-  border-collapse: collapse;
-}
-
-th, td {
-  text-align: center; /* Centers text inside each cell */
-  padding: 10px 15px; /* Adds spacing so text isn't cramped */
-}
-
+/* Footer Formatting */
 footer {
   padding: 20px;
   background-color: var(--dark-ink);
@@ -130,51 +162,47 @@ footer p {
 /* ==========================================================================
    4. COMPONENTS
    ========================================================================== */
-
-/* Hero / Banner Centering (Lesson 6.4 Technique) */
 .hero-banner,
 .site-banner {
-  min-height: 200px;
+  min-height: 120px;
   display: flex;
   justify-content: center;
   align-items: center;
   text-align: center;
 }
 
-/* Responsive Flex Container for Cards */
+/* Place Cards Grid (Uses Flexbox inside) */
 .place-grid,
 .compshop-list,
 .recommended-list {
   display: flex;
   flex-wrap: wrap;
   gap: 24px;
-  margin-bottom: 60px;
+  margin-bottom: 40px;
 }
 
-/* 📍 Places Cards (.place-card) */
 .place-card {
-  flex: 1 1 240px;                     /* Grow to fill, shrink, base width 240px */
-  background-color: var(--card-bg);  /* Background color */
-  border-radius: 8px;                /* Border radius */
-  padding: 20px;                      /* At least 16px padding */
-  border-left: 6px solid var(--brand); /* Coloured left border using brand variable */
+  flex: 1 1 240px;
+  background-color: var(--card-bg);
+  border-radius: 8px;
+  padding: 20px;
+  border-left: 6px solid var(--brand);
   display: flex;
   flex-direction: column;
   align-items: center;
   text-align: center;
 }
 
-/* Distinct Font Size & Color on Place Name */
 .place-card h2,
 .place-card h3,
 .place-card .place-name {
   margin-top: 0;
-  font-size: 1.4rem;                 /* Distinct font-size */
-  color: var(--brand);               /* Distinct color using brand variable */
+  font-size: 1.4rem;
+  color: var(--brand);
 }
 
 .place-card p {
-  color: var(--text-muted);           /* Text contrast reaches > 4.5:1 ratio */
+  color: var(--text-muted);
   margin: 10px 0;
   font-size: 0.95rem;
 }
@@ -201,23 +229,25 @@ footer p {
   text-decoration: underline;
 }
 
-/* 📝 Contact & Suggestion Form Styling */
+/* Forms & Tables */
 #suggest-place,
-.contact-section form {
+.contact-section form,
+form {
   max-width: 600px;
-  margin: 40px auto;
+  margin: 30px auto;
   text-align: left;
 }
 
 fieldset {
   border: 1px solid var(--muted-grey);
-  border-radius: 8px;                 /* Border radius on fieldset */
-  padding: 24px;                      /* Padding on fieldset */
+  border-radius: 8px;
+  padding: 24px;
   background-color: var(--card-bg);
+  margin-bottom: 20px;
 }
 
 legend {
-  color: var(--brand);                /* Styled legend using brand colour */
+  color: var(--brand);
   font-weight: bold;
   font-size: 1.2rem;
   padding: 0 10px;
@@ -236,9 +266,10 @@ label {
 
 input[type="text"],
 input[type="email"],
+select,
 textarea {
   width: 100%;
-  padding: 12px;                      /* Consistent padding on inputs & textarea */
+  padding: 12px;
   border: 1px solid var(--muted-grey);
   border-radius: 4px;
   background-color: var(--dark-ink);
@@ -254,14 +285,14 @@ textarea {
 
 button[type="submit"],
 input[type="submit"] {
-  background-color: var(--brand);      /* Styled submit button */
+  background-color: var(--brand);
   color: var(--light-bg);
   font-weight: bold;
   font-size: 1rem;
-  padding: 12px 24px;                 /* Button padding */
-  border: none;                       /* No default border */
+  padding: 12px 24px;
+  border: none;
   border-radius: 6px;
-  cursor: pointer;                    /* Cursor: pointer */
+  cursor: pointer;
   transition: opacity 0.2s ease;
 }
 
@@ -270,7 +301,25 @@ input[type="submit"]:hover {
   opacity: 0.85;
 }
 
-/* Secondary Pages (About/Contact) */
+table {
+  margin: 20px auto 30px auto;
+  border-collapse: collapse;
+  width: 100%;
+  max-width: 600px;
+}
+
+th, td {
+  text-align: left;
+  padding: 10px 15px;
+  border: 1px solid var(--muted-grey);
+}
+
+th {
+  color: var(--brand);
+  background-color: var(--dark-ink);
+}
+
+/* Secondary Pages */
 .about-section,
 .contact-section {
   max-width: 700px;
@@ -284,6 +333,7 @@ input[type="submit"]:hover {
 
 .about-section h2 {
   margin-top: 0;
+  color: var(--brand);
 }
 
 .contact-section ul {
@@ -304,16 +354,31 @@ input[type="submit"]:hover {
   color: var(--text-muted);
 }
 
-/* ==========================================================================
-   5. MEDIA QUERIES
-   ========================================================================== */
-@media (max-width: 650px) {
-  nav ul {
-    gap: 12px;
+/* Responsive adjustments for mobile viewports */
+@media (max-width: 700px) {
+  body {
+    grid-template-columns: 1fr;
+    grid-template-areas:
+      "masthead"
+      "main"
+      "side"
+      "foot";
+  }
+
+  aside {
+    margin: 0 16px;
   }
 
   main {
-    width: 92%;
-    padding: 35px 0;
+    padding: 20px 16px;
+  }
+
+  .header-content {
+    flex-direction: column;
+    text-align: center;
+  }
+
+  nav ul {
+    gap: 12px;
   }
 }
