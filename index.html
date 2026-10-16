@@ -11,7 +11,8 @@
   <header class="site-header">
     <div class="header-content">
       <div class="site-title">
-        <h1>Rutchii's Compshop Guide🎮 🗺️</h1>
+        <!-- Added id for guide name -->
+        <h1 id="guide-title">Rutchii's Compshop Guide🎮 🗺️</h1>
         <p>Compshops near TUP to pass time and enjoy with friends</p>
       </div>
 
@@ -65,6 +66,8 @@
     <!-- Centered Header Section -->
     <div class="hero-banner">
       <h2>My Recommended Places</h2>
+      <!-- Added element to display JavaScript computed stats -->
+      <p id="computed-stats" style="margin-top: 10px; font-weight: bold;"></p>
     </div>
 
     <!-- Section 2: Recommended Places -->
@@ -94,7 +97,11 @@
   </main>
 
   <footer>
-    <p>&copy; 2026 Rutchii's Compshop Guide. All rights reserved.</p>
+    
+    <p id="footer-copyright"></p>
   </footer>
+
+ 
+  <script src="script.js"></script>
 </body>
 </html>
